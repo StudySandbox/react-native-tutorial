@@ -3,7 +3,8 @@
 import { Alert } from "react-native";
 import { useCallback, useState } from "react";
 
-const API_URL = "http://localhost:5001/api";
+// 배포된 Backend API URL
+const API_URL = "https://rn-wallet-api-5x9i.onrender.com/api";
 
 export const useTransactions = (userId) => {
   const [transactions, setTransactions] = useState([]);
