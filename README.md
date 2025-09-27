@@ -10,6 +10,10 @@
 - Express.js
 - PostgreSQL(Neon)
 - Clerk(Auth)
+- Upstash(Redis)
 
 React Native 입문용으로는 필요한 부분만 깔끔하게 따라할 수 있었던 프로젝트 입니다.    
-별도의 ORM없이 SQL문을 입력하여 DB와 데이터를 주고 받습니다.
+별도의 ORM없이 SQL문을 입력하여 DB와 데이터를 주고 받습니다.   
+
+사용자가 여러 번 요청하는 것을 방지하기 위해서 Upstash에서 Redis를   
+구성하기는 하지만 출처 Youtube영상을 참고하면 금방 따라하고 테스트가 가능합니다.
