@@ -11,7 +11,10 @@
 - PostgreSQL(Neon)
 - Clerk(Auth)
 - Upstash(Redis)
+<img width="316" height="172" alt="image" src="https://github.com/user-attachments/assets/1f820e42-fe59-4cea-92ee-09d51d685210" />
 
+
+ 
 React Native 입문용으로는 필요한 부분만 깔끔하게 따라할 수 있었던 프로젝트 입니다.    
 별도의 ORM없이 SQL문을 입력하여 DB와 데이터를 주고 받습니다.   
 
