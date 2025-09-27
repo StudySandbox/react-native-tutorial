@@ -11,4 +11,5 @@
 - PostgreSQL(Neon)
 - Clerk(Auth)
 
-별도의 ORM없이 만들었습니다.
+React Native 입문용으로는 필요한 부분만 깔끔하게 따라할 수 있었던 프로젝트 입니다.    
+별도의 ORM없이 SQL문을 입력하여 DB와 데이터를 주고 받습니다.
