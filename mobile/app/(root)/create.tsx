@@ -2,7 +2,14 @@ import { useState } from "react";
 import { useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
-import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ActivityIndicatorBase,
+} from "react-native";
 
 import { API_URL } from "@/constants/api";
 import { COLORS } from "@/constants/colors";
@@ -56,7 +63,7 @@ const CreateScreen = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: user?.id,
+          user_id: user?.id,
           title,
           amount: formattedAmount,
           category: selectedCategory,
@@ -151,20 +158,82 @@ const CreateScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* AMOUNT CONTAINER */}
+        <View style={styles.amountContainer}>
+          <Text style={styles.currencySymbol}>$</Text>
+          <TextInput
+            style={styles.amountInput}
+            placeholder="0.00"
+            placeholderTextColor={COLORS.textLight}
+            value={amount}
+            onChangeText={setAmount}
+            keyboardType="numeric"
+          />
+        </View>
+
+        {/* INPUT CONTAINER */}
+        <View style={styles.inputContainer}>
+          <Ionicons
+            name="create-outline"
+            size={22}
+            color={COLORS.textLight}
+            style={styles.inputIcon}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Transaction Title"
+            placeholderTextColor={COLORS.textLight}
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
+
+        {/* TITLE */}
+        <Text style={styles.sectionTitle}>
+          <Ionicons name="pricetag-outline" size={16} color={COLORS.text} />
+          Category
+        </Text>
+
+        <View style={styles.categoryGrid}>
+          {CATEGORIES.map((category) => (
+            <TouchableOpacity
+              key={category.id}
+              style={[
+                styles.categoryButton,
+                selectedCategory === category.name &&
+                  styles.categoryButtonActive,
+              ]}
+            >
+              <Ionicons
+                name={category.icon as any}
+                size={20}
+                color={
+                  selectedCategory === category.name
+                    ? COLORS.white
+                    : COLORS.text
+                }
+                style={styles.categoryIcon}
+              />
+              <Text
+                style={[
+                  styles.categoryButtonText,
+                  selectedCategory === category.name &&
+                    styles.categoryButtonTextActive,
+                ]}
+              >
+                {category.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
 
-      {/* AMOUNT CONTAINER */}
-      <View style={styles.amountContainer}>
-        <Text style={styles.currencySymbol}>$</Text>
-        <TextInput
-          style={styles.amountInput}
-          placeholder="0.00"
-          placeholderTextColor={COLORS.textLight}
-          value={amount}
-          onChangeText={setAmount}
-          keyboardType="numeric"
-        />
-      </View>
+      {isLoading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicatorBase size="large" color={COLORS.primary} />
+        </View>
+      )}
     </View>
   );
 };
